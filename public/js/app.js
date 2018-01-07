@@ -1,14 +1,13 @@
 class ProductList extends React.Component {
-    state = {
-      products: [],
-    };
-  }
+  state = {
+    products: [],
+  };
 
   componentDidMount() {
     this.setState({ products: Data.products });
   }
 
-  handleProductUpVote(productId) => {
+  handleProductUpVote = (productId) => {
     const nextProducts = this.state.products.map((product) => {
       if (product.id === productId) {
         return Object.assign({}, product, {
@@ -24,7 +23,7 @@ class ProductList extends React.Component {
   }
 
   render() {
-    const products = this.state.products.sort((a,b) => (
+    const products = this.state.products.sort((a, b) => (
       b.votes - a.votes
     ));
     const productComponents = products.map((product) => (
@@ -52,6 +51,7 @@ class Product extends React.Component {
   handleUpVote = () => (
     this.props.onVote(this.props.id)
   );
+
   render() {
     return (
       <div className='item'>
@@ -85,8 +85,6 @@ class Product extends React.Component {
     );
   }
 }
-
-
 
 ReactDOM.render(
   <ProductList />,
